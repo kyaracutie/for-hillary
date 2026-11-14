@@ -1778,3 +1778,83 @@ img {
     scale: 1;
   }
 }
+
+
+/* =====================================
+   PHONE VIEW FIXES
+   ===================================== */
+
+@media (max-width: 600px) {
+
+  /* INTRO SCREEN */
+  .delivery-scene {
+    width: 94vw;
+    height: 105vw;
+    max-height: 430px;
+    position: relative;
+    overflow: visible;
+  }
+
+  .birthday-guy {
+    left: 25%;
+    top: 20px;
+    width: 110%;
+    height: 115%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  .envelope-button {
+    left: 12%;
+    top: 15%;
+    width: 65%;
+  }
+
+  /* BIRTHDAY HEADING */
+  #birthdayScreen h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+    padding-inline: 12px;
+    text-align: center;
+  }
+
+  /* CORKBOARD IMAGE */
+  #corkboard {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 12px;
+    box-sizing: border-box;
+  }
+
+  .birthday-corkboard-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  /* TEXT BELOW CORKBOARD */
+  #memoryWall {
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 12px;
+    text-align: center;
+  }
+
+  /* TAROT SECTION */
+  #letterCollection {
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 12px;
+    text-align: center;
+  }
+
+  #tarotGrid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 12px;
+    justify-items: center;
+  }
+
+}
