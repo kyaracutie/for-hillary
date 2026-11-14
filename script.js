@@ -638,6 +638,9 @@ function displaySequentialQuestion() {
 
  const submitButton = document.getElementById("sequentialQuizSubmit");
 
+submitButton.type = "submit";
+submitButton.onclick = null;
+   
 submitButton.textContent = "Check answer ♡";
 submitButton.type = "submit";
 submitButton.disabled = false;
