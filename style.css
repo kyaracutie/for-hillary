@@ -1,4 +1,5 @@
 
+
 /* ==============================
    CUSTOMIZE YOUR WEBSITE HERE
    ============================== */
@@ -1461,4 +1462,319 @@ body {
   font-weight: normal;
   margin: 4px auto 18px;
   color: #8b806f;
+}
+
+
+/* ==========================================
+   PHONE RESPONSIVE UPDATE
+   Keeps desktop design unchanged
+   ========================================== */
+
+/* Make images and sections adapt to screen width */
+img {
+  max-width: 100%;
+}
+
+.memory-wall-section,
+.tarot-section {
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Corkboard image */
+.birthday-corkboard-image {
+  display: block;
+  width: 100%;
+  max-width: 850px;
+  height: auto;
+  margin: 25px auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Prevent long text from stretching the page */
+.special-letter-message,
+.tarot-letter-message {
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   TABLETS AND PHONES
+   ========================================== */
+
+@media screen and (max-width: 768px) {
+
+  /* INTRO SCREEN */
+  .intro-screen {
+    min-height: 100svh;
+    padding: 20px 12px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .intro-content {
+    width: 100%;
+    max-width: 430px;
+  }
+
+  .open-label {
+    font-size: clamp(1.1rem, 5vw, 1.6rem);
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+
+  .delivery-scene {
+    width: min(95vw, 430px);
+    height: min(105vw, 400px);
+  }
+
+  .birthday-guy {
+    max-width: none;
+  }
+
+  .delivery-scene .envelope-button {
+    width: clamp(165px, 53vw, 235px);
+    left: 17%;
+    top: 17%;
+  }
+
+  .tiny-hint {
+    font-size: .78rem;
+    margin-top: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  /* BIRTHDAY HEADING */
+  .birthday-screen {
+    padding: 30px 15px 20px;
+    background-attachment: scroll;
+  }
+
+  .eyebrow {
+    font-size: .65rem;
+    letter-spacing: 2px;
+  }
+
+  .birthday-heading h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  /* CORKBOARD */
+  .memory-wall-section {
+    padding: 0 3px;
+  }
+
+  .birthday-corkboard-image {
+    width: 100%;
+    height: auto;
+    margin: 18px auto;
+  }
+
+  /* TAROT SECTION */
+  .tarot-section {
+    padding: 10px 2px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+    line-height: 1.25;
+  }
+
+  .section-heading p {
+    font-size: .9rem;
+    line-height: 1.6;
+  }
+
+  #tarotGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 12px;
+    width: 100%;
+    margin: 25px auto;
+  }
+
+  .tarot-card {
+    width: 100%;
+    max-width: 155px;
+  }
+
+  .tarot-card-name {
+    font-size: clamp(11px, 3vw, 15px);
+  }
+
+  /* SPECIAL ENVELOPE */
+  .special-letter-card {
+    width: min(85vw, 280px);
+    margin: 15px auto;
+  }
+
+  /* TAROT LETTER POPUP */
+  .tarot-focus {
+    padding: 12px;
+  }
+
+  .tarot-focus-card {
+    width: min(82vw, 340px);
+    max-height: 80svh;
+  }
+
+  .tarot-focus-back {
+    padding: 18px 15px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tarot-letter-photo {
+    max-height: 125px;
+    object-fit: contain;
+  }
+
+  .tarot-letter-message {
+    font-size: .88rem;
+    line-height: 1.55;
+  }
+
+  .tarot-letter-caption {
+    font-size: .8rem;
+  }
+
+  .tarot-letter-signature {
+    font-size: .9rem;
+  }
+
+  .tarot-focus-close {
+    top: 12px;
+    right: 12px;
+  }
+
+  /* QUIZ */
+  .sequential-quiz-overlay {
+    padding: 14px;
+  }
+
+  .sequential-quiz-box {
+    width: 100%;
+    max-width: 430px;
+    padding: 40px 20px 25px;
+  }
+
+  #sequentialQuizAnswer {
+    font-size: 16px;
+  }
+
+  /* SPECIAL LETTER */
+  .special-letter-overlay {
+    padding: 12px;
+    align-items: center;
+  }
+
+  .special-letter-paper {
+    width: 100%;
+    max-width: 550px;
+    max-height: 85svh;
+    padding: 52px 22px 35px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .special-letter-heading {
+    font-size: 19px;
+  }
+
+  .special-letter-greeting {
+    font-size: 14px;
+  }
+
+  .special-letter-message {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .special-letter-signature {
+    font-size: 14px;
+  }
+
+  .special-letter-image {
+    max-width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+  }
+
+  .birthday-footer {
+    font-size: .8rem;
+  }
+}
+
+/* ==========================================
+   SMALLER PHONES
+   ========================================== */
+
+@media screen and (max-width: 380px) {
+
+  .intro-screen {
+    padding: 12px 8px;
+  }
+
+  .delivery-scene {
+    width: 100%;
+    height: 105vw;
+  }
+
+  .delivery-scene .envelope-button {
+    width: 175px;
+    left: 15%;
+    top: 19%;
+  }
+
+  .birthday-heading h1 {
+    font-size: 1.85rem;
+  }
+
+  #tarotGrid {
+    gap: 14px 8px;
+  }
+
+  .tarot-card {
+    max-width: 140px;
+  }
+
+  .tarot-focus-card {
+    width: 84vw;
+  }
+
+  .tarot-focus-back {
+    padding: 14px 11px;
+  }
+
+  .tarot-letter-message {
+    font-size: .8rem;
+    line-height: 1.5;
+  }
+
+  .special-letter-paper {
+    padding: 48px 17px 28px;
+  }
+
+  .sequential-quiz-box {
+    padding: 38px 16px 22px;
+  }
+}
+
+/* ==========================================
+   TOUCHSCREEN IMPROVEMENTS
+   ========================================== */
+
+@media (hover: none) {
+  .tarot-card:hover .tarot-card-inner {
+    transform: none;
+  }
+
+  .special-letter-card:hover {
+    transform: none;
+  }
+
+  .envelope-button:hover {
+    scale: 1;
+  }
 }
