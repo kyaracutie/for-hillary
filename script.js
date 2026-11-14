@@ -636,9 +636,14 @@ function displaySequentialQuestion() {
 
   document.getElementById("sequentialQuizFeedback").textContent = "";
 
-  const submitButton = document.getElementById("sequentialQuizSubmit");
-  submitButton.textContent = "Check answer ♡";
-  submitButton.disabled = false;
+ const submitButton = document.getElementById("sequentialQuizSubmit");
+
+submitButton.textContent = "Check answer ♡";
+submitButton.type = "submit";
+submitButton.disabled = false;
+submitButton.onclick = null;
+
+document.getElementById("sequentialQuizAnswer").disabled = false;
 
   document.getElementById("sequentialQuizAnswer").disabled = false;
   document.getElementById("sequentialQuizAnswer").focus();
@@ -659,48 +664,50 @@ function checkSequentialAnswer(event) {
   if (!userAnswer) return;
 
   const acceptedAnswers =
-  sequentialSpecialQuiz[currentSpecialQuestion].answers;
+    sequentialSpecialQuiz[currentSpecialQuestion].answers;
 
-const isCorrect = acceptedAnswers.some(answer =>
-  normalizeSequentialAnswer(answer) ===
-  normalizeSequentialAnswer(input.value)
-);
+  const isCorrect = acceptedAnswers.some(answer =>
+    userAnswer === normalizeSequentialAnswer(answer)
+  );
 
+  // WRONG ANSWER
   if (!isCorrect) {
     feedback.textContent = "taka rajoed, shore kag fav na nimo";
     feedback.className = "quiz-incorrect";
+
     input.value = "";
     input.focus();
+
     return;
   }
 
+  // CORRECT ANSWER
   feedback.textContent = "May tama ka jan idol";
   feedback.className = "quiz-correct";
 
   input.disabled = true;
 
-  if (currentSpecialQuestion < sequentialSpecialQuiz.length - 1) {
-    submitButton.textContent = "Next question →";
-    submitButton.type = "button";
+  submitButton.type = "button";
 
-    submitButton.onclick = (clickEvent) => {
-      clickEvent.preventDefault();
+  if (currentSpecialQuestion < sequentialSpecialQuiz.length - 1) {
+
+    submitButton.textContent = "Next question →";
+
+    submitButton.onclick = () => {
       currentSpecialQuestion++;
       displaySequentialQuestion();
     };
 
   } else {
-    submitButton.textContent = "Open your letter ♡";
-    submitButton.type = "button";
 
-    submitButton.onclick = (clickEvent) => {
-      clickEvent.preventDefault();
+    submitButton.textContent = "Open your letter ♡";
+
+    submitButton.onclick = () => {
       closeSequentialSpecialQuiz();
       showSpecialLetter();
     };
   }
 }
-
 
 
 // Close the quiz.
