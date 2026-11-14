@@ -1,0 +1,1464 @@
+
+/* ==============================
+   CUSTOMIZE YOUR WEBSITE HERE
+   ============================== */
+
+
+:root {
+  --pink: #A8C5A0;
+  --light-pink: #EDF4E8;
+  --dark-pink: #527653;
+  --cream: #FAF8EF;
+  --ink: #344B38;
+
+  --intro-background: url("assets/intro-bg.jpg");
+  --birthday-background: url("assets/flower-background.png");
+
+  --paper: #FFFEF6;
+  --roundness: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background: var(--cream);
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--dark-pink);
+  outline-offset: 5px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.screen {
+  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==============================
+   INTRO SCREEN
+   ============================== */
+
+.intro-screen {
+  display: grid;
+  place-items: center;
+  padding: 25px;
+  background-color: var(--light-pink);
+  background-image: var(--intro-background);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.intro-content {
+  width: min(100%, 430px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.open-label {
+  font-size: clamp(1.25rem, 5vw, 2rem);
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--dark-pink);
+  margin-bottom: 25px;
+  animation: labelFloat 2.5s ease-in-out infinite;
+  text-shadow: 0 2px 12px #ffffffaa;
+}
+
+.envelope-button {
+  position: relative;
+  width: min(75vw, 310px);
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 0;
+  border-radius: 25px;
+  background: transparent;
+  cursor: pointer;
+  animation: envelopeDrop 1.15s cubic-bezier(.2,.8,.3,1.15) both,
+             envelopeWiggle 3s ease-in-out 1.2s infinite;
+  filter: drop-shadow(0 18px 20px #ad638333);
+  transition: filter .3s, scale .3s;
+}
+
+.envelope-button:hover {
+  filter: drop-shadow(0 22px 25px #ad638355);
+  scale: 1.04;
+}
+
+.envelope-button:active {
+  scale: .96;
+}
+
+.envelope-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.envelope-fallback {
+  display: none;
+  font-size: 130px;
+}
+
+.envelope-image[src=""] {
+  display: none;
+}
+
+.tiny-hint {
+  font-size: .9rem;
+  letter-spacing: .5px;
+  margin-top: 22px;
+  animation: softBlink 2.2s ease-in-out infinite;
+}
+
+@keyframes envelopeDrop {
+  from {
+    transform: translateY(-120vh) rotate(-12deg);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(12px) rotate(4deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes envelopeWiggle {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(-2deg) translateY(-4px); }
+  50% { transform: rotate(2deg) translateY(0); }
+  75% { transform: rotate(-1deg) translateY(-2px); }
+}
+
+@keyframes labelFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes softBlink {
+  0%, 100% { opacity: .65; }
+  50% { opacity: 1; }
+}
+
+/* ==============================
+   BIRTHDAY SCREEN
+   ============================== */
+
+.birthday-screen {
+  padding: 45px 20px 25px;
+  text-align: center;
+  background-color: #fff0f6;
+  background-image:
+    linear-gradient(#fff4f455, #fff4f455),
+    var(--birthday-background);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.birthday-heading {
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  font-size: .72rem;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: var(--dark-pink);
+}
+
+.birthday-heading h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 7vw, 4.6rem);
+  line-height: 1.1;
+  margin: 14px 0;
+  color: #a94870;
+  text-shadow: 0 3px 0 white;
+}
+
+#birthdayName {
+  color: #df719e;
+}
+
+.birthday-subtitle {
+  font-size: clamp(.9rem, 3vw, 1.15rem);
+}
+
+/* ==============================
+   VORTEX / PHOTO MOSAIC
+   ============================== */
+
+.mosaic-stage {
+  position: relative;
+  width: min(88vw, 470px);
+  height: min(88vw, 470px);
+  margin: 25px auto 10px;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.vortex {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+.vortex-tile {
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 2px;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 3;
+
+  transform: translate(var(--start-x), var(--start-y))
+             rotate(var(--angle))
+             scale(0.65);
+
+  animation: vortexTile 1.8s cubic-bezier(.2, .8, .2, 1)
+             forwards;
+
+  animation-delay: var(--delay, 0s);
+}
+
+.vortex-tile:hover {
+  z-index: 10;
+  border: 2px solid #fff;
+  filter: brightness(1.12);
+}
+
+@keyframes vortexTile {
+  0% {
+    opacity: 0;
+    transform: translate(var(--start-x), var(--start-y))
+               rotate(var(--angle))
+               scale(0.65);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}
+
+
+.portrait-reveal {
+  position: relative;
+  z-index: 1;
+  width: 63%;
+  aspect-ratio: 4 / 5;
+  border: 8px solid white;
+  border-bottom-width: 35px;
+  border-radius: 7px;
+  background: white;
+  box-shadow: 0 12px 38px #71445945;
+  opacity: 0;
+  transform: scale(.65) rotate(-8deg);
+  overflow: hidden;
+}
+
+.portrait-reveal.revealed {
+  animation: portraitAppear 1s cubic-bezier(.2,1.5,.4,1) forwards;
+}
+
+.portrait-reveal img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.portrait-caption {
+  position: absolute;
+  bottom: -28px;
+  left: 0;
+  right: 0;
+  font-family: Georgia, serif;
+  font-size: clamp(.48rem, 2vw, .8rem);
+  color: #7e4c60;
+}
+
+@keyframes portraitAppear {
+  0% { opacity: 0; transform: scale(.5) rotate(15deg); }
+  75% { opacity: 1; transform: scale(1.06) rotate(-3deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-2deg); }
+}
+
+.mosaic-message {
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: Georgia, serif;
+  font-size: clamp(1rem, 3.5vw, 1.3rem);
+  line-height: 1.7;
+  padding: 0 10px;
+}
+
+.cute-button {
+  display: inline-block;
+  border: 0;
+  border-radius: 999px;
+  padding: 15px 24px;
+  margin: 15px 0 35px;
+  color: white;
+  background: #d96f99;
+  box-shadow: 0 7px 0 #b7537b;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.cute-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 0 #b7537b;
+}
+
+.cute-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 #b7537b;
+}
+
+/* ==============================
+   MEMORY GARDEN
+   ============================== */
+
+.letter-garden {
+  max-width: 950px;
+  margin: 20px auto 50px;
+  padding: 25px 12px;
+  scroll-margin-top: 20px;
+}
+
+.garden-heading {
+  margin-bottom: 30px;
+}
+
+.garden-heading h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(1.7rem, 5vw, 2.7rem);
+  margin: 12px 0;
+}
+
+.garden-heading p {
+  line-height: 1.6;
+}
+
+.letter-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  gap: 22px;
+}
+
+.memory-card {
+  border: 0;
+  padding: 10px 10px 15px;
+  background: #fffdf9;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 7px 20px #75445c1c;
+  transform: rotate(var(--tilt, -2deg));
+  transition: transform .25s, box-shadow .25s;
+}
+
+.memory-card:hover {
+  transform: rotate(0) translateY(-7px);
+  box-shadow: 0 14px 28px #75445c30;
+}
+
+.memory-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #f8dbe6;
+}
+
+.memory-card .card-name {
+  display: block;
+  margin-top: 12px;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.memory-card .card-caption {
+  display: block;
+  font-size: .75rem;
+  margin-top: 5px;
+}
+
+.garden-note {
+  font-family: Georgia, serif;
+  margin-top: 35px;
+  font-size: 1.05rem;
+}
+
+/* ==============================
+   LETTER POP-UP
+   ============================== */
+
+.letter-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: #553342a8;
+  backdrop-filter: blur(7px);
+  animation: modalFade .25s ease-out;
+}
+
+.letter-paper {
+  position: relative;
+  width: min(100%, 530px);
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 40px clamp(22px, 7vw, 45px);
+  border-radius: 5px 5px 25px 5px;
+  background:
+    radial-gradient(ellipse at top right, #fce2eb80, transparent 55%),
+    var(--paper);
+  box-shadow: 0 20px 70px #24131c60;
+  text-align: center;
+  border: 1px solid #f5dce5;
+  animation: paperOpen .45s cubic-bezier(.2,1.3,.5,1);
+}
+
+.letter-paper::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed #e8b4c6;
+  pointer-events: none;
+}
+
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 17px;
+  z-index: 2;
+  width: 35px;
+  height: 35px;
+  border: 0;
+  border-radius: 50%;
+  background: #f9dce7;
+  color: #9e476a;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.letter-decoration {
+  position: relative;
+  margin: 8px 0 22px;
+  color: #d96f99;
+  letter-spacing: 2px;
+}
+
+.letter-paper h2 {
+  position: relative;
+  font-family: Georgia, serif;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  line-height: 1.3;
+  margin: 12px 0 25px;
+}
+
+.modal-message {
+  position: relative;
+  white-space: pre-line;
+  text-align: left;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.modal-signature {
+  position: relative;
+  text-align: right;
+  white-space: pre-line;
+  font-family: Georgia, serif;
+  font-style: italic;
+  line-height: 1.7;
+  margin-top: 25px;
+}
+
+@keyframes modalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes paperOpen {
+  from { opacity: 0; transform: scale(.8) rotate(-3deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.birthday-footer {
+  padding: 25px 10px 10px;
+  font-family: Georgia, serif;
+  font-size: .9rem;
+}
+
+/* ==============================
+   MOBILE / REDUCED MOTION
+   ============================== */
+
+@media (max-width: 480px) {
+  .birthday-screen {
+    padding: 35px 14px 20px;
+    background-attachment: scroll;
+  }
+
+  .mosaic-stage {
+    margin-top: 30px;
+  }
+
+  .letter-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .letter-paper {
+    padding-top: 42px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+
+/* DREAMY GREEN BIRTHDAY DETAILS */
+
+.birthday-screen {
+  background-color: #EDF4E8;
+  background-image:
+    radial-gradient(
+      ellipse at 10% 15%,
+      #D4E7C8B8,
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 90% 75%,
+      #C5DDC0A6,
+      transparent 45%
+    ),
+    var(--birthday-background);
+  background-size: cover;
+  background-position: center;
+}
+
+.birthday-heading h1 {
+  color: #456B49;
+  text-shadow: 0 3px 0 #FAF8EF;
+}
+
+#birthdayName {
+  color: #739B70;
+}
+
+.vortex-tile {
+  border-color: #FFFEF6;
+  box-shadow: 0 6px 18px #456B4935;
+}
+
+.portrait-reveal {
+  box-shadow: 0 12px 38px #456B4940;
+}
+
+.letter-paper {
+  border-color: #D8E5D0;
+  background:
+    radial-gradient(
+      ellipse at top right,
+      #E3EEDD99,
+      transparent 55%
+    ),
+    #FFFEF6;
+}
+
+.letter-paper::before {
+  border-color: #CADCC2;
+}
+
+.memory-card {
+  background: #FFFEF6;
+}
+
+.memory-card:hover {
+  box-shadow: 0 14px 28px #456B4930;
+}
+
+.garden-note,
+.birthday-footer {
+  color: #527653;
+}
+
+
+/* ===== BIRTHDAY DELIVERY GUY ===== */
+
+.delivery-scene {
+  position: relative;
+  width: min(90vw, 430px);
+  height: min(100vw, 440px);
+  margin: 0 auto;
+  isolation: isolate;
+}
+
+.birthday-guy {
+  position: absolute;
+  left: 290;
+  top: 20px;
+
+  width: 110%;  /* increase to make him wider */
+  height: 130%; /* increase to make him taller */
+
+  object-fit: contain;
+  object-position: center bottom;
+  z-index: 1;
+
+  animation:
+    guyEntrance 1.2s cubic-bezier(.2, .9, .3, 1.3) both,
+    guyWiggle 4s ease-in-out 1.3s infinite;
+}
+
+.delivery-scene .envelope-button {
+  position: absolute;
+  z-index: 3;
+
+  left: 20%;
+  top: 15%;
+
+  width: clamp(180px, 50vw, 260px);
+  aspect-ratio: 1.35 / 1;
+
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  animation:
+    mailEntrance .8s ease-out 1s both,
+    mailWiggle 3s ease-in-out 1.8s infinite;
+}
+
+.delivery-scene .envelope-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.delivery-scene .envelope-fallback {
+  display: none;
+  font-size: 90px;
+}
+
+@keyframes guyEntrance {
+  from {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(4%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes guyWiggle {
+  0%, 100% { rotate: 0deg; }
+  25% { rotate: -1deg; }
+  75% { rotate: 1deg; }
+}
+
+@keyframes mailEntrance {
+  from {
+    opacity: 0;
+    translate: 0 35px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes mailWiggle {
+  0%, 100% { rotate: 0deg; }
+  25% { rotate: -3deg; }
+  75% { rotate: 3deg; }
+}
+
+@media (max-width: 480px) {
+  .delivery-scene {
+    height: min(105vw, 420px);
+  }
+}
+
+
+/* ==========================================
+   TAROT CARD SIZE — PORTRAIT STYLE
+   ========================================== */
+
+/* The tarot card grid */
+#tarotGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 850px;
+  margin: 35px auto;
+  justify-items: center;
+}
+
+/* Individual tarot card */
+.tarot-card {
+  width: 100%;
+  max-width: 210px;
+  aspect-ratio: 2 / 3;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+/* Keep the card's contents inside its size */
+.tarot-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+/* Tarot card front and back */
+.tarot-card-front,
+.tarot-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  backface-visibility: hidden;
+}
+
+/* Your tarot artwork */
+.tarot-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Card name overlay */
+.tarot-card-name {
+  position: absolute;
+  bottom: 8px;
+  left: 5px;
+  right: 5px;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* Card back */
+.tarot-card-back {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+}
+
+/* Hover animation */
+.tarot-card:hover .tarot-card-inner {
+  transform: translateY(-6px);
+}
+
+/* Smaller cards on phones */
+@media (max-width: 600px) {
+  #tarotGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .tarot-card {
+    max-width: 155px;
+  }
+}
+
+/* ==========================================
+   TAROT LETTER POPUP
+   ========================================== */
+
+.tarot-focus {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(25, 40, 25, 0.85);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.tarot-focus.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tarot-focus-card {
+  position: relative;
+  width: min(85vw, 380px);
+  aspect-ratio: 2 / 3;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.tarot-focus-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+.tarot-focus-card.flipped .tarot-focus-inner {
+  transform: rotateY(180deg);
+}
+
+.tarot-focus-front,
+.tarot-focus-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+}
+
+.tarot-focus-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FAF8EF;
+}
+
+.tarot-focus-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tarot-tap-hint {
+  position: absolute;
+  bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: rgba(250, 248, 239, 0.9);
+  color: #456B49;
+  font-size: 0.85rem;
+}
+
+.tarot-focus-back {
+  transform: rotateY(180deg);
+  padding: 25px;
+  background: #FAF8EF;
+  color: #344B38;
+  text-align: center;
+}
+
+.tarot-letter-photo {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.tarot-letter-message {
+  white-space: pre-line;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.tarot-letter-signature {
+  white-space: pre-line;
+  text-align: right;
+  font-style: italic;
+}
+
+.tarot-letter-caption {
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.tarot-focus-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #FAF8EF;
+  color: #456B49;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.tarot-card-name {
+  font-family: "PLAYFAIR DISPLAY FC", serif;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transform: translateY(5px);
+
+}
+
+
+/* =====================================================
+   SPECIAL PERSONAL LETTER — ADDITIONAL STYLES
+   ===================================================== */
+
+/* ==========================================
+   CENTERED SPECIAL ENVELOPE
+   ========================================== */
+
+#tarotGrid {
+  position: relative;
+}
+
+.special-letter-card {
+  grid-column: 1 / -1;
+  justify-self: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: min(85vw, 300px);
+  min-height: 220px;
+
+  padding: 20px;
+  margin: 25px auto;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  animation: specialEnvelopeAppear .8s ease both;
+  transition: transform .3s ease;
+}
+
+.special-letter-card:hover {
+  transform: translateY(-7px);
+}
+
+.special-envelope {
+  position: relative;
+  width: 210px;
+  height: 135px;
+
+  border-radius: 8px;
+  background: #A8C5A0;
+
+  box-shadow: 0 12px 25px #344B3830;
+  overflow: hidden;
+}
+
+.special-envelope-body {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(145deg, transparent 49%, #789B76 50%) left,
+    linear-gradient(215deg, transparent 49%, #8BAE86 50%) right;
+
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+}
+
+.special-envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  width: 0;
+  height: 0;
+
+  border-left: 105px solid transparent;
+  border-right: 105px solid transparent;
+  border-top: 78px solid #C5D8B9;
+
+  transform-origin: top;
+  transition: transform .5s ease;
+}
+
+.special-envelope-seal {
+  position: absolute;
+  z-index: 3;
+
+  left: 50%;
+  top: 53%;
+
+  transform: translate(-50%, -50%);
+
+  display: grid;
+  place-items: center;
+
+  width: 37px;
+  height: 37px;
+
+  border-radius: 50%;
+  background: #527653;
+  color: #fff;
+  font-size: 21px;
+
+  box-shadow: 0 3px 8px #344B3850;
+}
+
+.special-letter-card:hover .special-envelope-flap {
+  transform: rotateX(20deg);
+}
+
+.special-envelope-title {
+  margin-top: 18px;
+
+  color: #344B38;
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.special-envelope-hint {
+  margin-top: 6px;
+
+  color: #527653;
+  font-size: .85rem;
+  text-align: center;
+}
+
+@keyframes specialEnvelopeAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ==========================================
+   ONE-QUESTION-AT-A-TIME QUIZ
+   ========================================== */
+
+.sequential-quiz-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(25, 40, 25, .82);
+  backdrop-filter: blur(8px);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity .3s ease, visibility .3s ease;
+}
+
+.sequential-quiz-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sequential-quiz-box {
+  position: relative;
+
+  width: min(100%, 480px);
+  padding: 42px 30px 35px;
+
+  border-radius: 20px;
+  background: #FAF8EF;
+  color: #344B38;
+
+  text-align: center;
+
+  box-shadow: 0 20px 60px #0004;
+  animation: quizBoxAppear .4s ease both;
+}
+
+.sequential-quiz-close {
+  position: absolute;
+  top: 12px;
+  right: 17px;
+
+  border: none;
+  background: transparent;
+
+  color: #527653;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.sequential-quiz-label {
+  color: #789B76;
+  font-size: .75rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.sequential-quiz-progress {
+  margin: 22px 0 15px;
+
+  color: #789B76;
+  font-size: .85rem;
+  font-weight: bold;
+}
+
+.sequential-quiz-box h2 {
+  min-height: 65px;
+  margin: 15px 0 25px;
+
+  font-family: Georgia, serif;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  line-height: 1.5;
+}
+
+#sequentialQuizAnswer {
+  display: block;
+  width: 100%;
+
+  padding: 14px 16px;
+  margin-top: 15px;
+
+  border: 1px solid #A8C5A0;
+  border-radius: 12px;
+  outline: none;
+
+  background: white;
+  color: #344B38;
+
+  font: inherit;
+  text-align: center;
+}
+
+#sequentialQuizAnswer:focus {
+  border-color: #527653;
+  box-shadow: 0 0 0 3px #A8C5A033;
+}
+
+#sequentialQuizFeedback {
+  min-height: 25px;
+  margin: 15px 0;
+
+  font-size: .9rem;
+  font-weight: bold;
+}
+
+.quiz-incorrect {
+  color: #B85C5C;
+}
+
+.quiz-correct {
+  color: #527653;
+}
+
+#sequentialQuizSubmit {
+  width: 100%;
+  padding: 14px 20px;
+
+  border: none;
+  border-radius: 30px;
+
+  background: #527653;
+  color: white;
+
+  font: inherit;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+
+#sequentialQuizSubmit:hover {
+  background: #3F6242;
+  transform: translateY(-2px);
+}
+
+#sequentialQuizSubmit:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}
+
+@keyframes quizBoxAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .special-envelope {
+    width: 190px;
+    height: 122px;
+  }
+
+  .special-envelope-flap {
+    border-left-width: 95px;
+    border-right-width: 95px;
+    border-top-width: 70px;
+  }
+
+  .sequential-quiz-box {
+    padding: 40px 22px 28px;
+  }
+}
+
+
+/* ==========================================
+   SPECIAL LETTER — CRUMPLED PAPER REVEAL
+   ========================================== */
+
+.special-letter-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10010;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(25, 40, 25, 0.82);
+  backdrop-filter: blur(7px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  overflow-y: auto;
+}
+
+.special-letter-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.special-letter-paper {
+  position: relative;
+  width: min(90vw, 620px);
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 65px 55px;
+  color: #344B38;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(170, 150, 110, 0.12), transparent 35%),
+    radial-gradient(ellipse at 80% 75%, rgba(170, 150, 110, 0.12), transparent 40%),
+    #FAF8EF;
+  border: 1px solid #d9d2bd;
+  border-radius: 5px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+  transform: scale(0.15) rotate(-12deg);
+  opacity: 0;
+  filter: blur(5px);
+
+  animation: specialPaperUnfold 1.15s cubic-bezier(.2, .8, .25, 1) forwards;
+}
+
+@keyframes specialPaperUnfold {
+  0% {
+    transform: scale(0.15) rotate(-12deg);
+    opacity: 0;
+    filter: blur(5px);
+    border-radius: 45%;
+  }
+
+  45% {
+    transform: scale(0.85) rotate(5deg);
+    opacity: 1;
+    filter: blur(1px);
+    border-radius: 15px;
+  }
+
+  75% {
+    transform: scale(1.03) rotate(-1deg);
+    border-radius: 7px;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0);
+    border-radius: 5px;
+  }
+}
+
+.special-letter-content {
+  opacity: 0;
+  animation: specialLetterAppear 0.8s ease 1s forwards;
+}
+
+@keyframes specialLetterAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+.special-letter-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: transparent;
+  color: #527653;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.special-letter-heading {
+  margin: 0 0 35px;
+  text-align: center;
+  color: #527653;
+  font-size: 23px;
+  font-weight: normal;
+}
+
+.special-letter-greeting {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.special-letter-message {
+  font-size: 15px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.special-letter-signature {
+  margin-top: 35px;
+  font-size: 15px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 600px) {
+  .special-letter-paper {
+    width: 95vw;
+    max-height: 82vh;
+    padding: 55px 25px 40px;
+  }
+
+  .special-letter-heading {
+    font-size: 20px;
+  }
+
+  .special-letter-message {
+    font-size: 14px;
+  }
+}
+
+
+.special-letter-image {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  max-height: 280px;
+  object-fit: contain;
+  margin: 20px auto;
+  border-radius: 8px;
+}
+
+body {
+  background-image: url("assets/flower-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.special-letter-caption {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  font-weight: normal;
+  margin: 4px auto 18px;
+  color: #8b806f;
+}

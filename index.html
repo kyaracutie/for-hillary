@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffe8f0">
+  <title>A Little Surprise For You ♡</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- SCREEN 1: THE LETTER -->
+  <main id="introScreen" class="screen intro-screen">
+   
+<div class="intro-content">
+  <p class="open-label">OPEN ME PLSPLS ♡</p>
+
+  <div class="delivery-scene">
+    <img
+      src="assets/birthday-guy.png"
+      alt="Your birthday letter delivery guy"
+      class="birthday-guy"
+    >
+
+    <button id="openEnvelope"
+      class="envelope-button"
+      aria-label="Open your birthday letter">
+      <img
+        src="assets/envelope.png"
+        alt="A special birthday letter"
+        class="envelope-image"
+      >
+      <span class="envelope-fallback">💌</span>
+    </button>
+  </div>
+
+  <p class="tiny-hint">from: kyaracutiepieidolnimo</p>
+</div>
+
+  </main>
+
+  <!-- SCREEN 2: BIRTHDAY REVEAL -->
+  <!-- BIRTHDAY SCREEN -->
+<main id="birthdayScreen" class="screen birthday-screen hidden">
+
+  <div class="birthday-heading">
+    <p class="eyebrow">A LITTLE MAGIC, JUST FOR YOU</p>
+    <h1>HAPPY BIRTHDAY,<br><span id="birthdayName">BESTIE</span>! ♡</h1>
+    
+  </div>
+
+  <!-- CORKBOARD PHOTO WALL -->
+   <!-- CORKBOARD PHOTO WALL -->
+  <section class="memory-wall-section" id="memoryWall">
+    <div class="corkboard" id="corkboard">
+      <!-- Your corkboard image goes here -->
+    </div>
+  </section>
+
+  <!-- TAROT LETTER COLLECTION -->
+  <section class="tarot-section" id="letterCollection">
+    <div class="section-heading">
+      <p class="section-kicker">MESSAGES FROM YOUR PEOPLE YOU LOVE [not all ksi la ang uban]</p>
+      <h2>Letters from your little universe</h2>
+      <p>Pili lang dira oms</p>
+    </div>
+
+    <div class="tarot-grid" id="tarotGrid">
+      <!-- JavaScript places the tarot cards here -->
+    </div>
+  </section>
+
+  <footer class="birthday-footer">
+    <p>made with so much love, just for you ♡</p>
+  </footer>
+
+</main>
+
+<!-- MUSIC -->
+<audio id="birthdayMusic" src="assets/bgmusic.mp3"
+  loop preload="auto"></audio>
+
+</body>
+</html>
