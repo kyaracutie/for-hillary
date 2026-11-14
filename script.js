@@ -514,8 +514,8 @@ function createSpecialLetterCard() {
       <div class="special-envelope-body"></div>
       <div class="special-envelope-seal">♡</div>
     </div>
-    <span class="special-envelope-title">A little something for you</span>
-    <span class="special-envelope-hint">Open when you're ready ♡</span>
+    <span class="special-envelope-title">Mine last kasi ofc</span>
+    <span class="special-envelope-hint">Open me last</span>
   `;
 
   envelopeCard.addEventListener("click", openSequentialSpecialQuiz);
