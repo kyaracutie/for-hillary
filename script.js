@@ -125,7 +125,15 @@ corkboardImage: "assets/corkboard.png",
         "Hii daee, Pibirtday🥹🥹 I never expected thta we we'll be able to meet again as friends shalann, bitaw wa gyud ko nag expect kay first nto nga encounter kay wagyud ta nag sapakanay ayha ra inig mag buka na ang baba ni Earl HAHAHAHAHA, bitaw daee hangtud ron maulaw gihapon kog tagad nimo ayha ra if naa sila Kyara ug Ayesha that's when I really feel nga ahh friends gyud mi ayh buang yarn. Andddd I really envy how cheerful you are the way nga mka make friends gyud ka sa tanan and that's a skill nga wala sa tanan ayhh. Bitaw happy sweet 17th birthday Helarii I hope that you will have a great birthday, good health, continue bieng you, and don't let anyone hindee the way you are. Ayownnn BE WHO YOU AREEE FOR YOURR PRIDEE! anyways so much for that once again happy happy birthday!",
       signature: "From,\nMikaela ♡"
     },
-
+  {
+      name: "Dar",
+      cardImage: "assets/tarot8.jpe",
+      image: "assets/daryn.jpe",
+      caption: "you are a mosaic of everyone you have loved",
+      message:
+        "Happyy birthdayy Hillary enjoyy ur dayy ug padayun saka buang 😘😘",
+      signature: "From,\nDaryn ♡"
+    },
 
   ]
 };
